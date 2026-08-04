@@ -4,27 +4,28 @@
 // Input a string : RADAR
 // Expected Output : The string is Palindrome.
 
+using System.Collections;
+
 Console.WriteLine("Assignment_5_2_4: check whether a string is Palindrome using recursion \n");
 // ----------------------------------
 while (true)
 {
-    // create random arrangement of string with words of different length
-    Random random = new Random();
-    int randSize = random.Next(15);
+    // define test cases
+    string[] testStrs = ["123454321", " 12321 ", "123221", "24322", "radar", "radadar", "amanaplanacanalpanama", "raddadar", "raddfar"];
+    Random random = new();
+    string testStr = testStrs[random.Next(testStrs.Length)];
 
-    // print out test string
-    Console.Write($"First {randSize} natural numbers are: \n");
+    Console.WriteLine($"testing '{testStr}'");
+
+    
 
 
+    if (IsThisPalindrome(0, testStr, true)) 
+        Console.WriteLine("YES");
+    else
+        Console.WriteLine("NO");
+    
 
-
-    // print out from 1 to x INCREASING
-    recursiveNaturalUp(1, randSize);
-
-    Console.WriteLine();
-
-    // print out from x to 1 DECREASING
-    recursiveNaturalDown(1, randSize);
 
 
 
@@ -34,36 +35,46 @@ while (true)
     if (DoesUserWantToQuit() == true) { break; }
 }
 // ----------------------------------
-// to print from 1 to x (natural number), I need to:
-//
-// #1 use a BASE CASE to stop the loop
-// #2 print the current number (either #2 or #3 depending upon desired order
-// #3 call recursive function with next number
-//
-// ----------------------------------
-void recursiveNaturalUp(int x, int max)
+
+
+
+
+bool IsThisPalindrome (int i, string s, bool result) 
 {
-    if (x > max) // base case
-        return;
+    // 1. base condition to exit is if we reach halfway point in string
+    if (i >= (s.Length/2))
+        return result;
 
-    Console.Write(x + " "); // print the output before the recursive function calls,
-                            // mean it's a HEAD recursion, prints in forward order
+    
+    bool retVal = result;
+    // 2. action: test if s[i=0] is diff from s[(len-1)-i], return false immediately if so
+    if (s[i] != s[(s.Length - 1) - i]) 
+    {
+        Console.WriteLine($"     [{s[i]} != {s[(s.Length - 1) - i]}] ");
+        return false;
+    }
+    else
+    {
+        Console.WriteLine($"     [{s[i]} == {s[(s.Length - 1) - i]}] ");
+    }
 
-    recursiveNaturalUp(x + 1, max); // recursive step - call the function with the next number
+    // 3. recursive call (occurs after action here to save cycles)
+    return IsThisPalindrome(i + 1, s, retVal);
+
+    
+    // (tail action here absent because using head recursion here, BEFORE recursion)
 }
+
+
+
+
+
 // ----------------------------------
 
-void recursiveNaturalDown(int x, int max)
-{
-    if (x > max) // base case
-        return;
 
-    recursiveNaturalDown(x + 1, max); // recursive step - call the function with the next number
 
-    Console.Write(x + " "); // print the output after the recursive function calls,
-                            // means it's a TAIL recursion, prints in reverse order
-}
-// ----------------------------------
+
+
 
 
 

@@ -15,17 +15,19 @@ while (true)
     
     // print out test string
     Console.Write($"First {randSize} natural numbers are: \n");
-    
-    
+
+
 
 
     // print out from 1 to x INCREASING
-    recursiveNaturalUp(1, randSize);
+    recursiveNaturalUp(randSize);
+    //recursiveNaturalUp(1, randSize);
 
     Console.WriteLine();
 
     // print out from x to 1 DECREASING
-    recursiveNaturalDown(1, randSize);
+    recursiveNaturalDown(randSize);
+    //recursiveNaturalDown(1, randSize);
 
 
 
@@ -38,33 +40,60 @@ while (true)
 // to print from 1 to x (natural number), I need to:
 //
 // #1 use a BASE CASE to stop the loop
-// #2 print the current number (either #2 or #3 depending upon desired order
+// 
+// #2 ACTION: print the current number                     ( <-- either 2-3 or 3-2 depending upon desired order)
 // #3 call recursive function with next number
 //
 // ----------------------------------
-void recursiveNaturalUp(int x, int max)
+void recursiveNaturalUp(int x)
 {
-    if (x > max) // base case
+    if (x <= 0) // base case
         return;
 
-    Console.Write(x + " "); // print the output before the recursive function calls,
-                            // mean it's a HEAD recursion, prints in forward order
+    recursiveNaturalUp(x - 1); // recursive step - call the function with the next number
 
-    recursiveNaturalUp(x + 1, max); // recursive step - call the function with the next number
+    Console.Write(x + " "); // ACTION (print the output) AFTER the recursive function calls,
+                            // mean it's a TAIL recursion, prints in REVERSE order since recursively passing x - 1
+
 }
 // ----------------------------------
 
-void recursiveNaturalDown(int x, int max)
+void recursiveNaturalDown(int x)
 {
-    if (x > max) // base case
+    if (x <= 0) // base case
         return;
 
-    recursiveNaturalDown(x + 1, max); // recursive step - call the function with the next number
+    Console.Write(x + " "); // ACTION (print the output) BEFORE the recursive function calls,
+                            // means it's a HEAD recursion, prints in proper order, since passing x - 1
 
-    Console.Write(x + " "); // print the output after the recursive function calls,
-                            // means it's a TAIL recursion, prints in reverse order
+    recursiveNaturalDown(x - 1); // recursive step - call the function with the next number
 }
 // ----------------------------------
+
+// ----------------------------------
+//void recursiveNaturalUp(int x, int max)
+//{
+//    if (x > max) // base case
+//        return;
+
+//    Console.Write(x + " "); // print the output before the recursive function calls,
+//                            // mean it's a HEAD recursion, prints in forward order
+
+//    recursiveNaturalUp(x + 1, max); // recursive step - call the function with the next number
+//}
+//// ----------------------------------
+
+//void recursiveNaturalDown(int x, int max)
+//{
+//    if (x > max) // base case
+//        return;
+
+//    recursiveNaturalDown(x + 1, max); // recursive step - call the function with the next number
+
+//    Console.Write(x + " "); // print the output after the recursive function calls,
+//                            // means it's a TAIL recursion, prints in reverse order
+//}
+//// ----------------------------------
 
 
 

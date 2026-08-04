@@ -20,11 +20,13 @@ while (true)
     // create random arrangement of string with words of different length
     Random random = new Random();
     // testing of this worked // string words = "a on\\ the] moon! tiger, choose- briefly. severely3";
-    string words = "a on the moon tiger choose briefly severely";
+    //string words = "a on the moon tiger choose briefly severely";
+    string words = "1 22 333 4444 55555 666666 7777777 88888888";
     // split by space, order by a random number, and rejoin (used AI to provide test cases)
     string testStr = string.Join(" ", words.Split(' ').OrderBy(w => random.Next()));
     // testing of this worked // testStr = "a";
-    // add spaces to add test case, worked // testStr = testStr + " ";
+    // add spaces to add test case, worked //
+    testStr = testStr + "  ";
 
 
 
@@ -54,10 +56,15 @@ while (true)
 int GetLengthOfLastWork (string s)
 {
     // start at end of string and work backwards to find the last word
-    
-    // first trim off any trailing spaces
-    s = s.Trim();
 
+    // first trim off any trailing spaces
+    //s = s.Trim();
+    // if s has spaces at the end, remove them, not using of Trim, per guidance
+    while (s[s.Length - 1] == ' ')
+    {
+        s = s.Remove(s.Length - 1);
+    }
+    
     // if string is empty return 0
     if (s.Length == 0)
         return 0;

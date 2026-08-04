@@ -47,7 +47,7 @@ bool IsThisPalindrome (int i, string s, bool result)
 
     
     bool retVal = result;
-    // 2. action: test if s[i=0] is diff from s[(len-1)-i], return false immediately if so
+    // 2. action: test if s[i] is diff from s[(len-1)-i], return false immediately if so
     if (s[i] != s[(s.Length - 1) - i]) 
     {
         Console.WriteLine($"     [{s[i]} != {s[(s.Length - 1) - i]}] ");

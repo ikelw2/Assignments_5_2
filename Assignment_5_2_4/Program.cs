@@ -17,14 +17,14 @@ while (true)
 
     Console.WriteLine($"testing '{testStr}'");
 
-    
 
 
-    if (IsThisPalindrome(0, testStr, true)) 
+    if (IsThisPalindrome(0, testStr, true))
         Console.WriteLine("YES");
     else
         Console.WriteLine("NO");
-    
+
+    //IsPalindrome(testStr, 0, (testStr.Length - 1)); // Peer's answer, better than mine
 
 
 
@@ -39,6 +39,11 @@ while (true)
 
 
 
+
+
+
+
+
 bool IsThisPalindrome (int i, string s, bool result) 
 {
     // 1. base condition to exit is if we reach halfway point in string
@@ -46,7 +51,6 @@ bool IsThisPalindrome (int i, string s, bool result)
         return result;
 
     
-    bool retVal = result;
     // 2. action: test if s[i] is diff from s[(len-1)-i], return false immediately if so
     if (s[i] != s[(s.Length - 1) - i]) 
     {
@@ -59,25 +63,31 @@ bool IsThisPalindrome (int i, string s, bool result)
     }
 
     // 3. recursive call (occurs after action here to save cycles)
-    return IsThisPalindrome(i + 1, s, retVal);
+    return IsThisPalindrome(i + 1, s, result);
 
     
     // (tail action here absent because using head recursion here, BEFORE recursion)
 }
 
 
-
-
-
 // ----------------------------------
 
+//static void IsPalindrome(string str, int left, int right) // from Peer in class, simpler and works
+//{
+//    if (left >= right) // base case
+//    {
+//        Console.WriteLine("The string is a palindrome");
+//        return;
+//    }
 
+//    if (str[left] != str[right])
+//    {
+//        Console.WriteLine("The string is not a palindrome");
+//        return;
+//    }
 
-
-
-
-
-
+//    IsPalindrome(str, left + 1, right - 1);
+//}
 
 
 
